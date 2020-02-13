@@ -1,0 +1,6 @@
+framework module Pods_ZiheChat {
+  umbrella header "Pods-ZiheChat-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,6 @@
+framework module Pods_ZiheChat_ZiheChatUITests {
+  umbrella header "Pods-ZiheChat-ZiheChatUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

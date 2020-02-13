@@ -7,12 +7,20 @@
 //
 
 import UIKit
+import LeanCloud
+import SVProgressHUD
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        //if let _ = LCApplication.default.currentUser{
+         //   self.performSegue(withIdentifier: "welcomeToChat", sender: self)
+        //}
+        SVProgressHUD.setMaximumDismissTimeInterval(5)
+        SVProgressHUD.setMinimumDismissTimeInterval(3)
+        SVProgressHUD.show()
     }
 
 

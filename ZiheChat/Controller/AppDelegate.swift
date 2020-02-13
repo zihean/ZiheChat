@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import LeanCloud
+import SVProgressHUD
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,7 +18,63 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        //Bmob.register(withAppKey:"472985cefbb3b2e48096f7e4d513fe19")
+        do{
+            try LCApplication.default.set(
+                id:"jqYxk2GwSRWWVxaK5aPpf46v-gzGzoHsz",
+                key:"TWHJDDczvNjlJ7NSEY9hz4de")
+            //serverURL:"https://jqyxk2gw.lc-cn-n1-shared.com"
+        }catch{
+            print(error)
+        }
+        LCApplication.logLevel = .all
+        LCApplication.logLevel = .off
+        //save()
+        
+        //testLC()
+//        print("########################")
+//        LCEngine.run("test", parameters: ["content":"caonima"]){result in
+//            switch result{
+//            case .success(value: let resultValue):
+//                print(resultValue)
+//                break
+//            case .failure(error: let error):
+//                print(error)
+//                break
+//            }
+//        }
+//        print("#################%%%%%%%%%%")
         return true
+    }
+    
+    func save(){
+        let gamescore:BmobObject=BmobObject(className: "GameScore")
+        gamescore.setObject("安子和", forKey: "playerName")
+        gamescore.setObject(100, forKey: "score")
+        gamescore.saveInBackground(){(isSuccessful,error) in
+            if error != nil{
+                print("Error::::::\(error)")
+            }else{
+                print("存储成功！")
+            }
+        }
+    }
+    
+    func testLC(){
+        do{
+            let testObjc = LCObject(className:"Test")
+            try testObjc.set("name",value:"azh")
+            let result = testObjc.save(){result in
+                switch result{
+                    case .success:
+                        break
+                    case .failure(error: let error):
+                        print(error)
+                }
+            }
+        }catch{
+            print(error)
+        }
     }
 
     // MARK: UISceneSession Lifecycle
